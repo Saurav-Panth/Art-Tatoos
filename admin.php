@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Block access if not logged in
+
 if (!isset($_SESSION['admin'])) {
   header("Location: login.php");
   exit();
@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin'])) {
 $galleryDir = "Gallery/";
 $message = "";
 
-// Handle upload
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["image"])) {
   $targetFile = $galleryDir . basename($_FILES["image"]["name"]);
   if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["image"])) {
   }
 }
 
-// Handle delete
+
 if (isset($_POST["delete"])) {
   $file = $_POST["delete"];
   if (file_exists($galleryDir . $file)) {
